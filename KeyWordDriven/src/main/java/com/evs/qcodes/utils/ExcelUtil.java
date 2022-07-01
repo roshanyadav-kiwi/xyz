@@ -20,7 +20,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
+import org.testng.annotations.Test;
 
 import com.itextpdf.text.log.SysoCounter;
 
@@ -192,14 +192,12 @@ public class ExcelUtil {
 			String executeValue = getCellData(sheetObj.getRow(rowNumber),
 					getColumnNumberByColumnName(sheetObj, "Execute(Y/N)"));
 
-			
-		
 			if (keywordName.equalsIgnoreCase("click")) {
 				wb.click(wb.getElement(locatorType, locatorValue), objectName);
 			} else if (keywordName.equalsIgnoreCase("input")) {
-				
+
 				wb.sendKeys(wb.getElement(locatorType, locatorValue), dataValue, objectName);
-				
+
 			} else if (keywordName.equalsIgnoreCase("launchBrowser")) {
 				wb.launchBrowser(dataValue);
 			} else if (keywordName.equalsIgnoreCase("OpenURL")) {
@@ -210,12 +208,14 @@ public class ExcelUtil {
 		}
 
 	}
-	
-	public static void main(String[] args) {
-		
-		  WebUtil wb = new WebUtil(); ExcelUtil util = new ExcelUtil();
-		  util.getKeywordScript(wb);
-		 
-			}
+
+	@Test
+	public void test() {
+
+		WebUtil wb = new WebUtil();
+		ExcelUtil util = new ExcelUtil();
+		util.getKeywordScript(wb);
+
+	}
 
 }
